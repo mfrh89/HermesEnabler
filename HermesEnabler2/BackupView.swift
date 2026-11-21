@@ -14,8 +14,7 @@ struct BackupView: View {
 
                 Section("First Launch") {
 
-                    Text("An initial MobileGestalt backup is required before using any feature. It will be kept as the original and cannot be overwritten here.")
-
+                    Text("An initial MobileGestalt backup is required before enabling Hermès faces. It will be kept as the original and cannot be overwritten here.")
                         .font(.footnote)
 
                     Button("Create Initial Backup") {

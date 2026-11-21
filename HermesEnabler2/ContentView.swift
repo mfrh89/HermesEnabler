@@ -10,32 +10,28 @@ struct ContentView: View {
                 BackupView(model: model)
             } else {
                 List {
-                    Section("Features") {
-                        NavigationLink { WatchFacesView(model: model) } label: {
-                            Label("Watch Faces", systemImage: "clock")
-                        }
-                        NavigationLink { DisplayAndControlsView(model: model) } label: {
-                            Label("Display & Controls", systemImage: "switch.2")
-                        }
-                        NavigationLink { SensorsAndWorkoutsView(model: model) } label: {
-                            Label("Sensors & Workouts", systemImage: "heart")
-                        }
-                        NavigationLink { IntelligenceView(model: model) } label: {
-                            Label("Siri & Intelligence", systemImage: "sparkles")
-                        }
+                    Section {
+                        Toggle("Hermès Faces", isOn: Binding(
+                            get: { model.hermesEnabled },
+                            set: { model.perform(.hermes($0)) }
+                        ))
+                    } footer: {
+                        Text("Only the Hermès face unlock is exposed in this fork. Create and keep a MobileGestalt backup before changing it.")
                     }
-                    Section("Utilities") {
+
+                    Section("Recovery") {
                         NavigationLink { BackupView(model: model) } label: {
-                            Label("MG Backups", systemImage: "archivebox")
+                            Label("MobileGestalt Backups", systemImage: "archivebox")
                         }
                     }
+
                     Section("Status") {
                         Text(LocalizedStringKey(model.message))
                             .font(.footnote)
                             .foregroundStyle(.secondary)
                     }
                 }
-                .navigationTitle("HermesEnabler")
+                .navigationTitle("Hermès Only")
                 .toolbar {
                     ToolbarItem(placement: .topBarTrailing) {
                         Button {

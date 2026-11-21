@@ -202,6 +202,15 @@ final class ContentModel {
         var error: NSString?
         var result: String
         var toggleFailed = false
+        switch action {
+        case .backup, .manualBackup, .restoreBackup, .hermes:
+            break
+        default:
+            message = "This fork only supports Hermès faces and MobileGestalt backup/restore."
+            refreshCapabilityStates()
+            return
+        }
+
         let shouldAlertOnFailure: Bool
         switch action {
         case .hermes, .ultraFaces, .ultraFaceClass, .aod, .aodSeconds, .actionButton, .doubleTap,
