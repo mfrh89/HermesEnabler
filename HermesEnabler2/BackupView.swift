@@ -22,6 +22,16 @@ struct BackupView: View {
                     }
                 }
 
+                Section("Recovery") {
+                    Button("Disable Hermès Without Backup", role: .destructive) {
+                        model.perform(.hermes(false))
+                    }
+
+                    Text("Use this only if the app was removed after Hermès was enabled and the original backup is unavailable. Supported builds attempt native recovery and write nothing if recovery cannot be verified.")
+                        .font(.footnote)
+                        .foregroundStyle(.secondary)
+                }
+
             } else {
 
                 Section("Create Backup") {
